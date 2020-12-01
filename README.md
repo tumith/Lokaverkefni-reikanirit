@@ -9,3 +9,7 @@ ____
 ___
 ## Self-Orginzing list
 Er til að sína hvað maður leitaði af seinast eða til að sína það sem var leitað mest af
+
+___
+### Programming languegs
+Ég er að pæla að nota py en er ekki alveg 100% ef ég breyti þá er skrifa ég það
