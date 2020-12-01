@@ -9,7 +9,6 @@ class Node:
     
     def insert(self,numer):
         if self.nxt is None:
-            """
             n  = Node(self.value)
             n.value = numer
             n.nxt = None
@@ -19,11 +18,7 @@ class Node:
             else:
                 self.rear.nxt = n
                 self.rear = n
-            """
-            n = Node(self.value)
-            n.nxt = self.head
-            self.head.prv = n
-            self.head = n
+            
         else:
             return self.nxt.insert(self.value)
     
