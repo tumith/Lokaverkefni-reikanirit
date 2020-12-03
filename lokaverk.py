@@ -87,6 +87,11 @@ class Self_Orginizing:
         if not tmp or not tmp.nxt:
             return print('ekkert til að færa')
         
+
+        while tmp and tmp.nxt:
+            mein_value = tmp
+            tmp = tmp.nxt
+        
         # benda næst seinasta sem none
         mein_value.nxt = None
 
