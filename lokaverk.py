@@ -3,9 +3,7 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.nxt = None
-        self.head = None
         self.prv = None
-        # self.rear = None sé ekki tilgang með þessum
     
     def insert(self,numer):
         if self.nxt: # ef það er til næsti fer ég þangað...
@@ -16,15 +14,6 @@ class Node:
             self.nxt = n # nxt á self node bendir á nýjan node sem er aftast
             n.prv = self #  prv á nýja hnútnum bendir á mig sjálfan
             return True
-
-            """  sé ekki tilgang með þessu eða hvað ??????
-            if self.head == None:
-                self.head = self.rear = n
-            else:
-                self.rear.nxt = n
-                self.rear = n
-            """
-        
             return self.nxt.insert(numer)
 
     def print_all(self):
@@ -41,27 +30,19 @@ class Node:
                     print(' --> ',end="")
 
                 n = n.nxt
-            #print(self.value)
         
-    """def search(self,key):
-        tmp = self.value
-        mein_value = key
-
-        #skoða hvort það er eitthvað í litanum eða hvort það er bara eins tala
-        if not tmp or not tmp.nxt:
-            return print('ekkert til að færa')
-        
-
-        while tmp and tmp.nxt:
-            mein_value = tmp
-            tmp = tmp.nxt
-        
-        # benda næst seinasta sem none
-        mein_value.nxt = None
-
-        # setja valda node sem firsta
-        tmp.nxt = self.value
-        self.value = tmp"""
+    def search(self,key):
+        if self.value == key and self.nxt is None:
+            print('True')
+            return True
+        elif self.value == key and self.nxt is not None:
+            print('True')
+            return True
+        elif self.value != key and self.nxt is None:
+            print('False')
+            return False
+        else:
+            return self.nxt.search(key)
 
 class Self_Orginizing:
     def __init__(self):
@@ -80,24 +61,19 @@ class Self_Orginizing:
             self.head.insert(value)
     
     def search(self, key):
-        tmp = self.head
-        mein_value = key
-
-        #skoða hvort það er eitthvað í litanum eða hvort það er bara eins tala
-        if not tmp or not tmp.nxt:
-            return print('ekkert til að færa')
+        if self.head is None:
+            print('Það er ekkert í listanum')
+            return False
+        if self.head.search(key) == False:
+            print('Það er ekkert í listanum')
+            return False
         
+        elif self.head.search(key) == True:
+            key.nxt = self.head 
+            self.head = key
+        else:
+            return self.head.search(key)
 
-        while tmp and tmp.nxt:
-            mein_value = tmp
-            tmp = tmp.nxt
-        
-        # benda næst seinasta sem none
-        mein_value.nxt = None
-
-        # setja valda node sem firsta
-        tmp.nxt = self.head
-        self.head = tmp
 
 SO = Self_Orginizing()
 
@@ -105,5 +81,5 @@ SO.insert(5)           # 5
 SO.insert(7)           # 5 7
 SO.insert(6)           # 5 7 6
 SO.print_all()
-SO.search(7)           # 6 5 7
+SO.search(6)           # 6 5 7
 SO.print_all()
