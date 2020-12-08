@@ -69,8 +69,7 @@ class Self_Orginizing:
             return False
         
         elif self.head.search(key) == True:
-            key.nxt = self.head 
-            self.head = key
+            print('hér á að koma kóði til að færa töluna sme var valin fremst')
         else:
             return self.head.search(key)
 
