@@ -32,6 +32,27 @@ class Node:
                 n = n.nxt
         
     def search(self,key):
+        if self.value == key and self.prv is None:      # Head
+            return True
+            # Þinn kóði hér Tumi ef hnútur er fremstur...
+        elif self.value == key and self.nxt is None:    # Last
+            self.prv.nxt = self.nxt
+            return self
+            # Þinn kóði hér Tumi ef hnútur er aftastur
+        elif self.value == key and self.nxt:            # Í miðju
+            self.prv.nxt = self.nxt #tengjum framhjá
+            self.nxt.prv = self.prv #tengjum framhjá
+
+            self.prv = None # slítum frá listnaum
+            self.nxt = None # slítum frá listnaum
+
+            return self # skilum honum til baka í Self_Orginizing
+
+        elif self.value != key and self.nxt is None:    # Hnútur ekki til
+            return None
+        else:                                           # Förum í næsta hnút...
+            return self.nxt.search(key) 
+        """
         if self.value == key and self.nxt is None:
             print('True')
             return True
@@ -43,6 +64,7 @@ class Node:
             return False
         else:
             return self.nxt.search(key)
+        """
 
 class Self_Orginizing:
     def __init__(self):
@@ -61,17 +83,28 @@ class Self_Orginizing:
             self.head.insert(value)
     
     def search(self, key):
-        if self.head is None:
-            print('Það er ekkert í listanum')
-            return False
-        if self.head.search(key) == False:
-            print('Það er ekkert í listanum')
+        if self.head is None:                       # Listinn tómur
+            print('Tómur listi')
             return False
         
-        elif self.head.search(key) == True:
-            print('hér á að koma kóði til að færa töluna sme var valin fremst')
+        #if self.head.search(key) == False:         
+        #    print('Það er ekkert í listanum')
+        #    return False
+        
+        #elif self.head.search(key) == True:
+        #    print('hér á að koma kóði til að færa töluna sme var valin fremst')
+        
         else:
-            return self.head.search(key)
+            n =  self.head.search(key)              # Fáum hnútinn til baka ef hann er til annars None
+            
+            if n is None:                           # Hnútur ekki til í listanum
+                print("Ekki í lista")
+            if n is True:
+                print("\n tala er fremst")
+            else:
+                n.nxt = self.head
+                self.head.prv = n
+                self.head = n
 
 
 SO = Self_Orginizing()
@@ -79,6 +112,11 @@ SO = Self_Orginizing()
 SO.insert(5)           # 5
 SO.insert(7)           # 5 7
 SO.insert(6)           # 5 7 6
+SO.insert(9)           # 
 SO.print_all()
-SO.search(6)           # 6 5 7
+SO.search(6)           # 6 5 7 9
+SO.print_all()
+SO.search(9)           # 6 5 7
+SO.print_all()
+SO.search(5)
 SO.print_all()
