@@ -52,19 +52,7 @@ class Node:
             return None
         else:                                           # Förum í næsta hnút...
             return self.nxt.search(key) 
-        """
-        if self.value == key and self.nxt is None:
-            print('True')
-            return True
-        elif self.value == key and self.nxt is not None:
-            print('True')
-            return True
-        elif self.value != key and self.nxt is None:
-            print('False')
-            return False
-        else:
-            return self.nxt.search(key)
-        """
+        
 
 class Self_Orginizing:
     def __init__(self):
@@ -86,20 +74,12 @@ class Self_Orginizing:
         if self.head is None:                       # Listinn tómur
             print('Tómur listi')
             return False
-        
-        #if self.head.search(key) == False:         
-        #    print('Það er ekkert í listanum')
-        #    return False
-        
-        #elif self.head.search(key) == True:
-        #    print('hér á að koma kóði til að færa töluna sme var valin fremst')
-        
         else:
             n =  self.head.search(key)              # Fáum hnútinn til baka ef hann er til annars None
             
             if n is None:                           # Hnútur ekki til í listanum
                 print("Ekki í lista")
-            if n is True:
+            elif n is True:
                 print("\n tala er fremst")
             else:
                 n.nxt = self.head
@@ -112,7 +92,7 @@ SO = Self_Orginizing()
 SO.insert(5)           # 5
 SO.insert(7)           # 5 7
 SO.insert(6)           # 5 7 6
-SO.insert(9)           # 
+SO.insert(9)           # 5 7 6 9
 SO.print_all()
 SO.search(6)           # 6 5 7 9
 SO.print_all()
